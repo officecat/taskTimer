@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/taskTimer/static/css/main.d40d58bf.css",
+    "main.js": "/taskTimer/static/js/main.0c52ed23.js",
+    "index.html": "/taskTimer/index.html",
+    "main.d40d58bf.css.map": "/taskTimer/static/css/main.d40d58bf.css.map",
+    "main.0c52ed23.js.map": "/taskTimer/static/js/main.0c52ed23.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d40d58bf.css",
+    "static/js/main.0c52ed23.js"
+  ]
+}
