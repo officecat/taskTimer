@@ -1,36 +1,7 @@
 import { useForm } from "react-hook-form";
-import { useSetRecoilState } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import styled from "styled-components";
-import { toDoState } from "./atoms";
-
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-`;
-
-const Input = styled.input`
-  margin: 10px;
-  padding: 5px;
-  border: none;
-`;
-
-const Button = styled.button`
-  background-color: skyblue;
-  border: none;
-  margin: 10px;
-  padding: 5px;
-  &:hover {
-    background-color: royalblue;
-    color: white;
-  }
-`;
-
-const Message = styled.div`
-  margin: 0 10px;
-  font-size: 11px;
-  color: yellow;
-  font-style: italic;
-`;
+import { categoryState, toDoState } from "./atoms";
 
 interface IForm {
   toDo: string;
@@ -44,10 +15,11 @@ function CreateTodo() {
     formState: { errors },
   } = useForm<IForm>();
   const setTodos = useSetRecoilState(toDoState);
+  const category = useRecoilValue(categoryState);
 
   const handleValid = ({ toDo }: IForm) => {
     setTodos((oldTodos) => [
-      { text: toDo, id: Date.now(), category: "TO_DO", time: [] },
+      { text: toDo, id: Date.now(), category, time: [] },
       ...oldTodos,
     ]);
     setValue("toDo", "");

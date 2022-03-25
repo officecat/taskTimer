@@ -15,10 +15,12 @@ export const localStorageEffect =
     });
   };
 
+type categories = "DONE" | "DOING" | "TO_DO";
+
 export interface ITodo {
   id: number;
   text: string;
-  category: "DONE" | "DOING" | "TO_DO";
+  category: categories;
   time: ITime[];
 }
 
@@ -40,9 +42,17 @@ export const timeState = atom<ITime[]>({
   effects: [localStorageEffect("TIME")],
 });
 
+export const categoryState = atom<categories>({
+  key: "category",
+  default: "TO_DO",
+});
+
 export const toDoSelector = selector({
   key: "toDoSelector",
   get: ({ get }) => {
-    return "This is selector";
+    const toDos = get(toDoState);
+    const category = get(categoryState);
+
+    return toDos.filter((todo) => todo.category === category);
   },
 });
